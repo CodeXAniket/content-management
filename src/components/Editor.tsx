@@ -111,6 +111,10 @@ const Editor: React.FC = () => {
               placeholder="Write your content here... (Markdown supported)"
               required
             />
+            <div className="mt-2 text-xs text-muted-foreground">
+              <p>Markdown supported: headings (#), bold (**), italic (*), lists (- or 1.), and images:</p>
+              <code className="block bg-muted/50 p-1 mt-1 rounded">![Image description](https://example.com/image.jpg)</code>
+            </div>
           </div>
           
           <div className="flex items-center">

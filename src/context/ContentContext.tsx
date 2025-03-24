@@ -40,6 +40,9 @@ const sampleContents: ContentItem[] = [
       - Simple, intuitive interface
       - Live preview functionality
       - Clean article editor
+      - Image embedding support
+      
+      ![Example Image](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop)
       
       Get started by creating your first piece of content!
     `,
@@ -61,6 +64,9 @@ const sampleContents: ContentItem[] = [
       - Content organization strategies
       - Using tags and categories
       - Publishing workflows
+      - Adding beautiful images to your content
+      
+      ![Content Strategy](https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&auto=format&fit=crop)
       
       Master these techniques to become a content management pro!
     `,
@@ -83,6 +89,8 @@ const sampleContents: ContentItem[] = [
       - Hierarchy
       - Balance
       - Contrast
+      
+      ![Design Principles](https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop)
       
       Apply these principles to create visually compelling content.
     `,

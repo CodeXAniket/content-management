@@ -5,9 +5,12 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useContent } from '../context/ContentContext';
 
-// Simple function to convert markdown to HTML
+// Enhanced function to convert markdown to HTML with image support
 const markdownToHTML = (markdown: string) => {
   let html = markdown;
+  
+  // Images - Process this first to prevent interference with other rules
+  html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="my-4 rounded-lg max-w-full h-auto" />');
   
   // Headers
   html = html.replace(/^# (.*$)/gm, '<h1 class="text-3xl font-bold mt-8 mb-4">$1</h1>');
@@ -25,7 +28,7 @@ const markdownToHTML = (markdown: string) => {
   // Paragraphs
   html = html.replace(/^(?!<[hl\d]).+$/gm, (match) => {
     if (match.trim() === '') return '';
-    if (match.startsWith('<li')) return match;
+    if (match.startsWith('<li') || match.startsWith('<img')) return match;
     return `<p class="mb-4">${match}</p>`;
   });
   
