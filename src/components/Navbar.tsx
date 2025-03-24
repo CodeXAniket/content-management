@@ -9,6 +9,9 @@ const Navbar: React.FC = () => {
   
   const isEditing = location.pathname === '/editor' && selectedContent;
   const isCreating = location.pathname === '/editor' && !selectedContent;
+  const isLoginPage = location.pathname === '/login';
+
+  if (isLoginPage) return null;
 
   return (
     <header className="glass-card w-full z-50 fixed top-0 left-0 right-0 border-b border-white/20">
@@ -62,6 +65,13 @@ const Navbar: React.FC = () => {
                 {isEditing ? 'Preview' : 'Cancel'}
               </Link>
             )}
+            
+            <Link
+              to="/login"
+              className="text-sm font-medium px-4 py-1.5 rounded-lg bg-secondary text-secondary-foreground transition-all duration-300 hover:bg-secondary/80 scale-hover"
+            >
+              Sign In
+            </Link>
           </div>
         </div>
       </div>

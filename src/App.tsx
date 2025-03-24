@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Editor from "./pages/Editor";
 import Preview from "./pages/Preview";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/editor" element={<Editor />} />
             <Route path="/preview/:id" element={<Preview />} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
