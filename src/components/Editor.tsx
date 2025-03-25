@@ -1,19 +1,18 @@
-
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useContent, ContentItem } from '../context/ContentContext';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContent, ContentItem } from "../context/ContentContext";
 
 const Editor: React.FC = () => {
-  const { selectedContent, addContent, updateContent, clearSelectedContent } = useContent();
+  const { selectedContent, addContent, updateContent, clearSelectedContent } =
+    useContent();
   const navigate = useNavigate();
-  
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [excerpt, setExcerpt] = useState('');
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [excerpt, setExcerpt] = useState("");
   const [published, setPublished] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  // Load selected content if available
+
   useEffect(() => {
     if (selectedContent) {
       setTitle(selectedContent.title);
@@ -21,28 +20,26 @@ const Editor: React.FC = () => {
       setExcerpt(selectedContent.excerpt);
       setPublished(selectedContent.published);
     } else {
-      // Reset form if no selected content
-      setTitle('');
-      setContent('');
-      setExcerpt('');
+      setTitle("");
+      setContent("");
+      setExcerpt("");
       setPublished(false);
     }
   }, [selectedContent]);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       if (selectedContent) {
-        // Update existing content
         updateContent(selectedContent.id, {
           title,
           content,
           excerpt,
           published,
         });
-        
+
         // Navigate to the preview page
         navigate(`/preview/${selectedContent.id}`);
       } else {
@@ -53,18 +50,17 @@ const Editor: React.FC = () => {
           excerpt,
           published,
         };
-        
+
         addContent(newContentData);
         clearSelectedContent();
-        
-        // Navigate back to dashboard
-        navigate('/');
+
+        navigate("/");
       }
     } finally {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in">
       <div className="glass-card p-6 transition-all duration-300">
@@ -83,7 +79,7 @@ const Editor: React.FC = () => {
               required
             />
           </div>
-          
+
           <div>
             <label htmlFor="excerpt" className="block text-sm font-medium mb-1">
               Excerpt
@@ -98,7 +94,7 @@ const Editor: React.FC = () => {
               required
             />
           </div>
-          
+
           <div>
             <label htmlFor="content" className="block text-sm font-medium mb-1">
               Content
@@ -112,11 +108,16 @@ const Editor: React.FC = () => {
               required
             />
             <div className="mt-2 text-xs text-muted-foreground">
-              <p>Markdown supported: headings (#), bold (**), italic (*), lists (- or 1.), and images:</p>
-              <code className="block bg-muted/50 p-1 mt-1 rounded">![Image description](https://example.com/image.jpg)</code>
+              <p>
+                Markdown supported: headings (#), bold (**), italic (*), lists
+                (- or 1.), and images:
+              </p>
+              <code className="block bg-muted/50 p-1 mt-1 rounded">
+                ![Image description](https://example.com/image.jpg)
+              </code>
             </div>
           </div>
-          
+
           <div className="flex items-center">
             <input
               id="published"
@@ -131,26 +132,26 @@ const Editor: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="flex justify-end space-x-3">
         <button
           type="button"
           onClick={() => {
             clearSelectedContent();
-            navigate('/');
+            navigate("/");
           }}
           className="px-4 py-2 rounded-lg border border-muted bg-background text-foreground transition-all duration-200 hover:bg-secondary scale-hover"
           disabled={isSubmitting}
         >
           Cancel
         </button>
-        
+
         <button
           type="submit"
           className="px-6 py-2 rounded-lg bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary/90 scale-hover"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Saving...' : selectedContent ? 'Update' : 'Create'}
+          {isSubmitting ? "Saving..." : selectedContent ? "Update" : "Create"}
         </button>
       </div>
     </form>
