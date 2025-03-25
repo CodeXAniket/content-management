@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
             to="/"
             className="text-xl font-medium tracking-tight transition-all duration-300 hover:text-primary"
           >
-            <span className="text-primary">Minimal</span>CMS
+            <span className="text-primary">Contently</span>
           </Link>
         </div>
 
