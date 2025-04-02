@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Define types for our content
@@ -10,8 +9,9 @@ export interface ContentItem {
   createdAt: Date;
   updatedAt: Date;
   published: boolean;
+  tags?: string[];
+  imageUrl?: string; // Optional: if you want to store image separately from content
 }
-
 interface ContentContextType {
   contents: ContentItem[];
   selectedContent: ContentItem | null;
